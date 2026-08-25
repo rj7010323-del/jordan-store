@@ -41,6 +41,7 @@
                 radial-gradient(circle at 90% 90%, rgba(229, 184, 105, 0.07) 0%, transparent 45%);
             background-attachment: fixed;
             padding-top: 75px;
+            position: relative;
         }
 
         .container {
@@ -160,25 +161,47 @@
             transform: translateY(-2px);
         }
 
-        /* Top Single Badge Section */
+        /* Top Hero Banner with Punchline Behind */
         .top-hero-banner {
-            padding: 24px 0 10px;
+            position: relative;
+            padding: 35px 0 15px;
             text-align: center;
+            overflow: hidden;
+        }
+
+        /* Background Watermark Punchline */
+        .punchline-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(28px, 6vw, 68px);
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 1;
+            user-select: none;
         }
 
         .top-hero-tag {
+            position: relative;
+            z-index: 2;
             display: inline-flex;
             align-items: center;
             background: rgba(229, 184, 105, 0.1);
-            border: 1px solid rgba(229, 184, 105, 0.3);
+            border: 1px solid rgba(229, 184, 105, 0.35);
             color: var(--gold-primary);
             font-size: clamp(10px, 2.2vw, 12px);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 7px 18px;
+            padding: 8px 20px;
             border-radius: 30px;
-            box-shadow: 0 0 20px rgba(229, 184, 105, 0.15);
+            box-shadow: 0 0 25px rgba(229, 184, 105, 0.18);
+            backdrop-filter: blur(8px);
         }
 
         /* Top 5 Latest Uploads Slider */
@@ -277,12 +300,16 @@
             background: var(--surface-panel);
             overflow: hidden;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .slide-img-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .slide-info {
@@ -412,6 +439,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.5s ease;
         }
 
@@ -425,6 +453,11 @@
             font-weight: 900;
             opacity: 0.15;
             letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
         }
 
         .info {
@@ -572,6 +605,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .sidebar-body {
@@ -764,8 +798,9 @@
         </div>
     </header>
 
-    <!-- Top Badge Only -->
+    <!-- Top Badge with Punchline Behind -->
     <section class="top-hero-banner container">
+        <div class="punchline-bg">UNRIVALED LEGACY • ELEVATED CULTURE</div>
         <div class="top-hero-tag">Verified Archive Collection</div>
     </section>
 
@@ -903,15 +938,17 @@
             latestFive.forEach(product => {
                 const item = document.createElement('div');
                 item.className = 'slide-item';
-                item.onclick = () => openProductSidebar(product);
+                item.onclick = () => openProductSidebar(product.id);
 
-                let imgBlock = `<div class="slide-img-box"><div class="img-placeholder" style="display:flex; align-items:center; justify-content:center; height:100%;">JORDAN</div></div>`;
+                let imgHtml = `<div class="img-placeholder">JORDAN</div>`;
                 if (product.img && product.img.trim() !== "") {
-                    imgBlock = `<div class="slide-img-box"><img src="${product.img}" alt="${product.title}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\' style=\\'display:flex;align-items:center;justify-content:center;height:100%;\\'>JORDAN</div>'"></div>`;
+                    imgHtml = `<img src="${product.img}" alt="${product.title}">`;
                 }
 
                 item.innerHTML = `
-                    ${imgBlock}
+                    <div class="slide-img-box">
+                        ${imgHtml}
+                    </div>
                     <div class="slide-info">
                         <div class="slide-title">${product.title}</div>
                         <div class="slide-price">₹${Number(product.price).toLocaleString('en-IN')}</div>
@@ -956,16 +993,16 @@
             filtered.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.onclick = () => openProductSidebar(product);
+                card.onclick = () => openProductSidebar(product.id);
 
-                let imageHtml = `<div class="img-wrapper"><div class="img-placeholder">JORDAN</div></div>`;
+                let imageHtml = `<div class="img-placeholder">JORDAN</div>`;
                 if (product.img && product.img.trim() !== "") {
-                    imageHtml = `<div class="img-wrapper"><img src="${product.img}" alt="${product.title}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'>JORDAN</div>'"></div>`;
+                    imageHtml = `<img src="${product.img}" alt="${product.title}">`;
                 }
 
                 card.innerHTML = `
                     <div class="card-badge">${product.category || 'Collection'}</div>
-                    ${imageHtml}
+                    <div class="img-wrapper">${imageHtml}</div>
                     <div class="info">
                         <h3>${product.title}</h3>
                         <div class="price">₹${Number(product.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
@@ -976,7 +1013,10 @@
             });
         };
 
-        window.openProductSidebar = function(product) {
+        window.openProductSidebar = function(productId) {
+            const product = cloudProducts.find(p => p.id === productId);
+            if (!product) return;
+
             const backdrop = document.getElementById('sidebarBackdrop');
             const imgWrapper = document.getElementById('sidebarImgContainer');
             
@@ -989,8 +1029,9 @@
             const buyLink = document.getElementById('sidebarBuyBtn');
             buyLink.href = encodeURI(product.link);
 
+            // Directly inject image without nesting bugs
             if (product.img && product.img.trim() !== "") {
-                imgWrapper.innerHTML = `<img src="${product.img}" alt="${product.title}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\' style=\\'font-size:32px;\\'>JORDAN</div>'">`;
+                imgWrapper.innerHTML = `<img src="${product.img}" alt="${product.title}">`;
             } else {
                 imgWrapper.innerHTML = `<div class="img-placeholder" style="font-size:32px;">JORDAN</div>`;
             }
