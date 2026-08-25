@@ -365,27 +365,16 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
- // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDggq2H6VpwteslozxGeYEy4ocyS8d_tAo",
-  authDomain: "jordan-store-1.firebaseapp.com",
-  projectId: "jordan-store-1",
-  storageBucket: "jordan-store-1.firebasestorage.app",
-  messagingSenderId: "830846757501",
-  appId: "1:830846757501:web:7fd37fcb86ef9e30d31f14",
-  measurementId: "G-5NK1N5GX8J"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+        // Your exact Firebase config from admin.html
+        const firebaseConfig = {
+            apiKey: "AIzaSyDggq2H6VpwteslozxGeYEy4ocyS8d_tAo",
+            authDomain: "jordan-store-1.firebaseapp.com",
+            projectId: "jordan-store-1",
+            storageBucket: "jordan-store-1.firebasestorage.app",
+            messagingSenderId: "830846757501",
+            appId: "1:830846757501:web:7fd37fcb86ef9e30d31f14",
+            measurementId: "G-5NK1N5GX8J"
+        };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
