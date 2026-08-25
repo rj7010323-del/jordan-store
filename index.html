@@ -48,7 +48,7 @@
             padding: 0 24px;
         }
 
-        /* Luxury Glass Header */
+        /* Glass Navigation */
         header {
             background: rgba(10, 10, 14, 0.85);
             backdrop-filter: blur(20px);
@@ -123,48 +123,160 @@
             transform: scale(1.15) rotate(-5deg);
         }
 
-        /* Hero Banner */
-        .hero {
-            padding: 135px 0 35px;
+        /* Short Strong Headline Banner */
+        .hero-statement {
+            padding: 110px 0 25px;
             text-align: center;
         }
 
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(229, 184, 105, 0.1);
-            border: 1px solid rgba(229, 184, 105, 0.3);
-            color: var(--gold-primary);
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 6px 16px;
-            border-radius: 30px;
-            margin-bottom: 16px;
-        }
-
-        .hero h1 {
-            font-size: clamp(32px, 5.5vw, 50px);
+        .hero-statement h1 {
+            font-size: clamp(20px, 4vw, 34px);
             font-weight: 900;
-            letter-spacing: -1px;
-            line-height: 1.15;
-            margin-bottom: 12px;
-            background: linear-gradient(180deg, #ffffff 40%, #a4a8b7 100%);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 40%, var(--gold-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
         }
 
-        .hero p {
+        .hero-statement p {
             color: var(--text-sub);
-            font-size: 15px;
-            max-width: 580px;
-            margin: 0 auto;
-            line-height: 1.6;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 700;
         }
 
-        /* Luxury Filter Toolbar */
+        /* Top 5 Latest Uploads Slider */
+        .featured-slider-section {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .slider-title {
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .slider-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--jordan-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--jordan-red);
+        }
+
+        .slider-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .slider-arrow {
+            background: var(--surface-panel);
+            border: 1px solid var(--border-glass);
+            color: var(--text-pure);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .slider-arrow:hover {
+            border-color: var(--gold-primary);
+            background: var(--gold-primary);
+            color: #000;
+        }
+
+        .slider-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 12px;
+            scrollbar-width: none;
+        }
+
+        .slider-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slide-item {
+            flex: 0 0 240px;
+            background: var(--surface-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .slide-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 25px var(--gold-glow);
+        }
+
+        .slide-img-box {
+            width: 100%;
+            height: 160px;
+            background: var(--surface-panel);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .slide-item:hover .slide-img-box img {
+            transform: scale(1.08);
+        }
+
+        .slide-info {
+            padding: 12px 14px;
+        }
+
+        .slide-title {
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .slide-price {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--gold-primary);
+        }
+
+        /* Filter Controls */
         .controls-bar {
             display: flex;
             flex-wrap: wrap;
@@ -175,7 +287,7 @@
             padding: 16px 24px;
             border-radius: 14px;
             border: 1px solid var(--border-glass);
-            margin: 25px 0 40px 0;
+            margin-bottom: 35px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
 
@@ -211,7 +323,7 @@
             box-shadow: 0 0 15px var(--gold-glow);
         }
 
-        /* Product Showcase Grid */
+        /* Main Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -327,7 +439,7 @@
             color: var(--jordan-red);
         }
 
-        /* Slide-Out Sidebar Details Panel */
+        /* Sidebar Drawer */
         .sidebar-backdrop {
             position: fixed;
             top: 0;
@@ -525,12 +637,10 @@
         <div class="container nav-container">
             <a href="#" class="logo">JORDAN<span>VAULT</span></a>
             <div class="nav-actions">
-                <!-- Instagram Link with Exact Handle -->
                 <a href="https://www.instagram.com/jordan_store.___/" target="_blank" rel="noopener noreferrer" class="nav-btn">
                     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     <span>@jordan_store.___</span>
                 </a>
-                <!-- Email Inquiries -->
                 <a href="mailto:support@jordanstore.com?subject=Sneaker%20Inquiry" class="nav-btn">
                     <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
                     <span>Email Us</span>
@@ -539,14 +649,25 @@
         </div>
     </header>
 
-    <!-- Hero Header -->
-    <section class="hero container">
-        <div class="hero-tag">Verified Archive Collection</div>
-        <h1>The Pinnacle of Sneaker Culture.</h1>
-        <p>Explore exclusively authenticated Jordan silhouettes, rare player exclusives, and modern performance gear.</p>
+    <!-- Punchy Top Statement -->
+    <section class="hero-statement container">
+        <h1>Legendary Silhouettes. Uncompromised Authenticity.</h1>
+        <p>Curated Jordan Exclusives & Rare Drops</p>
     </section>
 
-    <!-- Main Content & Catalog -->
+    <!-- Top 5 Latest Uploads Slidebar -->
+    <section class="featured-slider-section container" id="featuredSliderSection" style="display: none;">
+        <div class="slider-header">
+            <div class="slider-title">Latest Vault Arrivals</div>
+            <div class="slider-controls">
+                <button class="slider-arrow" onclick="scrollSlider(-260)">&#10094;</button>
+                <button class="slider-arrow" onclick="scrollSlider(260)">&#10095;</button>
+            </div>
+        </div>
+        <div class="slider-container" id="featuredSlider"></div>
+    </section>
+
+    <!-- Main Catalog View -->
     <main class="container">
         <div class="controls-bar">
             <div class="filter-group">
@@ -572,7 +693,7 @@
         <div class="grid" id="productGrid"></div>
     </main>
 
-    <!-- Slide-Out Sidebar Details Drawer -->
+    <!-- Slide-Out Sidebar Details Panel -->
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeProductSidebar(event)">
         <div class="product-sidebar" onclick="event.stopPropagation()">
             <div class="sidebar-header">
@@ -601,7 +722,7 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK Logic -->
+    <!-- Firebase Real-Time SDK Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -626,8 +747,50 @@
             snapshot.forEach(docSnap => {
                 cloudProducts.push({ id: docSnap.id, ...docSnap.data() });
             });
+            renderFeaturedSlidebar();
             renderShowroomView();
         });
+
+        // Renders Top 5 Latest Uploads Carousel
+        function renderFeaturedSlidebar() {
+            const sliderSection = document.getElementById('featuredSliderSection');
+            const slider = document.getElementById('featuredSlider');
+            slider.innerHTML = '';
+
+            const latestFive = cloudProducts.slice(0, 5);
+
+            if (latestFive.length === 0) {
+                sliderSection.style.display = 'none';
+                return;
+            }
+
+            sliderSection.style.display = 'block';
+
+            latestFive.forEach(product => {
+                const item = document.createElement('div');
+                item.className = 'slide-item';
+                item.onclick = () => openProductSidebar(product);
+
+                let imgBlock = `<div class="slide-img-box"><div class="img-placeholder" style="display:flex; align-items:center; justify-content:center; height:100%;">JORDAN</div></div>`;
+                if (product.img && product.img.trim() !== "") {
+                    imgBlock = `<div class="slide-img-box"><img src="${product.img}" alt="${product.title}"></div>`;
+                }
+
+                item.innerHTML = `
+                    ${imgBlock}
+                    <div class="slide-info">
+                        <div class="slide-title">${product.title}</div>
+                        <div class="slide-price">₹${Number(product.price).toLocaleString('en-IN')}</div>
+                    </div>
+                `;
+                slider.appendChild(item);
+            });
+        }
+
+        window.scrollSlider = function(offset) {
+            const slider = document.getElementById('featuredSlider');
+            slider.scrollBy({ left: offset, behavior: 'smooth' });
+        };
 
         window.renderShowroomView = function() {
             const displayGrid = document.getElementById('productGrid');
