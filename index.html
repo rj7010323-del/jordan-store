@@ -74,16 +74,27 @@
     }
 
     .nav-brand {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      letter-spacing: 0.2em;
-      color: var(--text-main);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
+      text-decoration: none;
     }
 
-    .nav-brand span {
+    .nav-brand-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(214, 173, 92, 0.3));
+    }
+
+    .nav-brand-text {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      letter-spacing: 0.18em;
+      color: var(--text-main);
+    }
+
+    .nav-brand-text span {
       color: var(--gold);
     }
 
@@ -258,46 +269,47 @@
       transform: translateX(4px);
     }
 
+    /* Hero Emblem Stage */
     .hero-display {
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .cube-frame {
+    .emblem-frame {
       width: 100%;
-      max-width: 360px;
-      aspect-ratio: 1;
-      background: radial-gradient(circle at center, var(--bg-sec) 0%, var(--bg-main) 70%);
+      max-width: 440px;
+      aspect-ratio: 16 / 10;
+      background: radial-gradient(circle at center, #171b26 0%, #080a0d 85%);
       border: 1px solid var(--gold-border);
+      border-radius: 6px;
       position: relative;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+      padding: 18px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(214, 173, 92, 0.1);
+      overflow: hidden;
     }
 
-    .cube-frame::before {
+    .emblem-frame::before {
       content: '';
       position: absolute;
       inset: 8px;
-      border: 1px solid rgba(214, 173, 92, 0.1);
+      border: 1px solid rgba(214, 173, 92, 0.12);
+      pointer-events: none;
     }
 
-    .cube-brand-symbol {
-      font-family: var(--font-display);
-      font-size: 3.5rem;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
+    .hero-emblem-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.9));
+      transition: transform 0.35s ease;
     }
 
-    .cube-caption {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: var(--text-muted);
+    .emblem-frame:hover .hero-emblem-img {
+      transform: scale(1.03);
     }
 
     /* --- 3. UNIFIED SEARCH & FILTER BAR --- */
@@ -813,6 +825,15 @@
       font-size: 1.2rem;
       letter-spacing: 0.15em;
       margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand-img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
     }
 
     .footer-desc {
@@ -890,6 +911,9 @@
       .hero-subtitle {
         margin: 0 auto 36px;
       }
+      .emblem-frame {
+        max-width: 340px;
+      }
       .catalog-grid {
         grid-template-columns: 1fr;
       }
@@ -932,7 +956,10 @@
   <!-- 1. NAVBAR -->
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#" class="nav-brand">JORDAN <span>STORE</span></a>
+      <a href="#" class="nav-brand">
+        <img src="ChatGPT Image Aug 26, 2026, 12_37_17 AM.png" alt="Jordan Store Shield Logo" class="nav-brand-img">
+        <div class="nav-brand-text">JORDAN <span>STORE</span></div>
+      </a>
       
       <ul class="nav-links">
         <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
@@ -992,9 +1019,8 @@
         <a href="#catalogSection" class="btn-hero">EXPLORE THE ARCHIVE &rarr;</a>
       </div>
       <div class="hero-display">
-        <div class="cube-frame">
-          <div class="cube-brand-symbol">JS</div>
-          <span class="cube-caption">Archive Verified</span>
+        <div class="emblem-frame">
+          <img src="ChatGPT Image Aug 26, 2026, 12_37_17 AM.png" alt="Jordan Store Emblem" class="hero-emblem-img">
         </div>
       </div>
     </div>
@@ -1078,7 +1104,7 @@
 
         <div class="trust-item">
           <div class="trust-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <h4 class="trust-heading">Secure Checkout</h4>
           <p class="trust-text">Safe & encrypted payments with white-glove transport tracking.</p>
@@ -1100,7 +1126,10 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand">JORDAN STORE</div>
+          <div class="footer-brand">
+            <img src="ChatGPT Image Aug 26, 2026, 12_37_17 AM.png" alt="Jordan Store Logo" class="footer-brand-img">
+            <span>JORDAN STORE</span>
+          </div>
           <p class="footer-desc">A premium archive of curated collectibles and limited editions for true connoisseurs.</p>
         </div>
         
@@ -1213,7 +1242,7 @@
 
         card.innerHTML = `
           <div class="card-media">
-            <span class="badge-tag">${product.category || 'Limited'}</span>
+            <span class="badge-tag">${product.edition || product.category || 'Limited'}</span>
             ${imgHtml}
           </div>
           <div class="card-body">
@@ -1240,7 +1269,9 @@
       grid.innerHTML = '';
 
       let filtered = cloudProducts.filter(item => {
-        const matchCategory = (selectedCategory === 'ALL') || (item.category || '').toLowerCase() === selectedCategory.toLowerCase();
+        const matchCategory = (selectedCategory === 'ALL') || 
+          (item.category || '').toLowerCase() === selectedCategory.toLowerCase() ||
+          (item.edition || '').toLowerCase() === selectedCategory.toLowerCase();
         const matchSearch = !searchTerm || 
           (item.title || '').toLowerCase().includes(searchTerm) || 
           (item.desc || '').toLowerCase().includes(searchTerm);
@@ -1269,7 +1300,7 @@
 
         card.innerHTML = `
           <div class="card-media">
-            <span class="badge-tag">${product.category || 'Archive'}</span>
+            <span class="badge-tag">${product.edition || product.category || 'Archive'}</span>
             ${imgHtml}
           </div>
           <div class="card-body">
@@ -1310,8 +1341,8 @@
       const backdrop = document.getElementById('sidebarBackdrop');
       const imgContainer = document.getElementById('sidebarImgContainer');
 
-      document.getElementById('sidebarHeaderTag').innerText = product.category ? `${product.category} Vault Item` : 'Vault Exclusive';
-      document.getElementById('sidebarCategory').innerText = product.category || 'Curated Silhouette';
+      document.getElementById('sidebarHeaderTag').innerText = product.edition ? `${product.edition} Tier` : (product.category ? `${product.category} Vault Item` : 'Vault Exclusive');
+      document.getElementById('sidebarCategory').innerText = `${product.edition ? product.edition + ' • ' : ''}${product.category || 'Curated Silhouette'}`;
       document.getElementById('sidebarTitle').innerText = product.title || 'Untitled Item';
       document.getElementById('sidebarPrice').innerText = `₹${Number(product.price || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
       document.getElementById('sidebarDesc').innerText = product.desc || 'Premium authentic release curated for sneaker and lifestyle collectors worldwide.';
