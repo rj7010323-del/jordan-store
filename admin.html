@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jordan Store | Secure Admin Terminal</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --surface-color: #161616;
+            --accent-color: #ff003c;
+            --accent-hover: #cc0030;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-color: #262626;
+            --danger-color: #df2020;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        
+        .panel-container { width: 100%; max-width: 520px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h2 { font-size: 22px; font-weight: 900; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        h2 span { color: var(--accent-color); }
+        
+        .auth-view, .dashboard-view { display: none; }
+        .active { display: block; }
+        
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: var(--text-muted); }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 6px; color: #fff; font-size: 14px; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--accent-color); }
+        
+        .file-upload-wrapper {
+            border: 2px dashed var(--border-color);
+            background: var(--bg-color);
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .file-upload-wrapper:hover { border-color: var(--accent-color); }
+        .file-upload-wrapper input[type="file"] {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;
+        }
+        .file-status-text { font-size: 12px; color: var(--text-muted); }
+        .preview-img { width: 100%; max-height: 140px; object-fit: cover; border-radius: 4px; margin-top: 10px; display: none; border: 1px solid var(--border-color); }
+
+        .action-btn { width: 100%; background: var(--accent-color); color: #fff; border: none; padding: 14px; font-weight: 700; text-transform: uppercase; border-radius: 6px; cursor: pointer; transition: background 0.2s; display: block; text-align: center; }
+        .action-btn:hover { background: var(--accent-hover); }
+        .action-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        
+        .logout-btn { background: transparent; color: var(--danger-color); border: 1px solid var(--danger-color); margin-top: 20px; }
+        .logout-btn:hover { background: rgba(223, 32, 32, 0.1); }
+        
+        .item-list { margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .item-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-color); padding: 12px 15px; border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 10px; gap: 10px; }
+        .item-info { display: flex; align-items: center; gap: 12px; overflow: hidden; }
+        .item-thumb { width: 36px; height: 36px; border-radius: 4px; object-fit: cover; background: #222; flex-shrink: 0; }
+        .item-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .del-btn { background: var(--danger-color); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: 700; flex-shrink: 0; }
+        .del-btn:hover { background: #b81414; }
+        
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #222; border: 1px solid var(--border-color); padding: 12px 25px; border-radius: 30px; font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1000; }
+        .toast.visible { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="panel-container">
+        <!-- Auth Gate -->
+        <div class="auth-view active" id="authView">
+            <h2>Terminal <span>Gate</span></h2>
+            <form id="loginForm" onsubmit="handleAdminLogin(event)">
+                <div class="form-group">
+                    <label>Admin Email</label>
+                    <input type="email" id="adminEmail" placeholder="admin@jordanstore.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Admin Password</label>
+                    <input type="password" id="adminPass" placeholder="Enter password" required>
+                </div>
+                <button type="submit" id="loginBtn" class="action-btn">Unlock Terminal</button>
+            </form>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard-view" id="dashboardView">
+            <h2>Cloud <span>Station</span></h2>
+            <form id="productForm" onsubmit="publishAffiliateProduct(event)">
+                <div class="form-group">
+                    <label>Product Title</label>
+                    <input type="text" id="prodTitle" placeholder="e.g. Air Jordan 1 Retro High" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="prodCategory" required>
+                        <option value="Retro">Retro Collection</option>
+                        <option value="Lifestyle">Lifestyle / Casual</option>
+                        <option value="Performance">Performance Basketball</option>
+                        <option value="Limited">Limited / Collabs</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Price ($ USD Numeric Only)</label>
+                    <input type="number" id="prodPrice" placeholder="e.g. 180" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Upload Photo (Device File)</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="prodFile" accept="image/*" onchange="handleLocalImageUpload(event)">
+                        <div class="file-status-text" id="fileStatus">Click or drag image file here</div>
+                    </div>
+                    <img id="imagePreview" class="preview-img" alt="Upload Preview">
+                </div>
+                <div class="form-group">
+                    <label>Or External Image Link</label>
+                    <input type="url" id="prodImg" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label>Affiliate / Hop Link</label>
+                    <input type="url" id="prodLink" placeholder="https://..." required>
+                </div>
+                <div class="form-group">
+                    <label>Marketing Description</label>
+                    <textarea id="prodDesc" rows="3" placeholder="Write sneaker specifications or story..."></textarea>
+                </div>
+                <button type="submit" id="submitBtn" class="action-btn">Publish to Cloud</button>
+            </form>
+            
+            <div class="item-list">
+                <label style="display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; color:var(--text-muted)">Live Cloud Products</label>
+                <div id="activeContainer"></div>
+            </div>
+
+            <button class="action-btn logout-btn" onclick="handleAdminLogout()">Lock Console</button>
+        </div>
+    </div>
+
+    <div class="toast" id="alertToast">Action processed successfully.</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+       // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDggq2H6VpwteslozxGeYEy4ocyS8d_tAo",
+  authDomain: "jordan-store-1.firebaseapp.com",
+  projectId: "jordan-store-1",
+  storageBucket: "jordan-store-1.firebasestorage.app",
+  messagingSenderId: "830846757501",
+  appId: "1:830846757501:web:7fd37fcb86ef9e30d31f14",
+  measurementId: "G-5NK1N5GX8J"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const productsCollection = collection(db, "products");
+
+        let uploadedBase64Image = "";
+        let unsubscribeSnapshot = null;
+
+        // Listen for Auth changes securely
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('authView').classList.remove('active');
+                document.getElementById('dashboardView').classList.add('active');
+                listenToCloudProducts();
+            } else {
+                document.getElementById('authView').classList.add('active');
+                document.getElementById('dashboardView').classList.remove('active');
+                if (unsubscribeSnapshot) unsubscribeSnapshot();
+            }
+        });
+
+        window.handleAdminLogin = async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value.trim();
+            const pass = document.getElementById('adminPass').value;
+            const btn = document.getElementById('loginBtn');
+
+            btn.disabled = true;
+            btn.innerText = "Authenticating...";
+
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+                document.getElementById('loginForm').reset();
+                popAlertToast("Clearance granted.");
+            } catch (err) {
+                popAlertToast("Access Denied: " + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Unlock Terminal";
+            }
+        };
+
+        window.handleAdminLogout = async function() {
+            await signOut(auth);
+            popAlertToast("Console locked.");
+        };
+
+        window.handleLocalImageUpload = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedBase64Image = e.target.result;
+                const preview = document.getElementById('imagePreview');
+                preview.src = uploadedBase64Image;
+                preview.style.display = 'block';
+                document.getElementById('fileStatus').innerText = `Selected: ${file.name}`;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.publishAffiliateProduct = async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = "Syncing...";
+
+            const finalImage = uploadedBase64Image || document.getElementById('prodImg').value.trim();
+            const rawPrice = parseFloat(document.getElementById('prodPrice').value);
+
+            const entry = {
+                title: document.getElementById('prodTitle').value.replace(/</g, "&lt;"),
+                category: document.getElementById('prodCategory').value,
+                price: isNaN(rawPrice) ? 0 : rawPrice,
+                img: finalImage,
+                link: document.getElementById('prodLink').value,
+                desc: document.getElementById('prodDesc').value.replace(/</g, "&lt;"),
+                createdAt: Date.now()
+            };
+
+            try {
+                await addDoc(productsCollection, entry);
+                document.getElementById('productForm').reset();
+                uploadedBase64Image = "";
+                document.getElementById('imagePreview').style.display = 'none';
+                document.getElementById('fileStatus').innerText = "Click or drag image file here";
+                popAlertToast("Synced to Cloud Database.");
+            } catch (err) {
+                popAlertToast("Error uploading: " + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Publish to Cloud";
+            }
+        };
+
+        window.removeCloudProduct = async function(docId) {
+            try {
+                await deleteDoc(doc(db, "products", docId));
+                popAlertToast("Product removed from Cloud.");
+            } catch (err) {
+                popAlertToast("Failed to delete: " + err.message);
+            }
+        };
+
+        function listenToCloudProducts() {
+            const q = query(productsCollection, orderBy("createdAt", "desc"));
+            unsubscribeSnapshot = onSnapshot(q, (snapshot) => {
+                const listArea = document.getElementById('activeContainer');
+                listArea.innerHTML = '';
+                if(snapshot.empty) {
+                    listArea.innerHTML = `<div style="font-size:13px; color:var(--text-muted); text-align:center; padding:10px 0;">No active cloud products.</div>`;
+                    return;
+                }
+                snapshot.forEach((docSnap) => {
+                    const item = docSnap.data();
+                    const docId = docSnap.id;
+                    const row = document.createElement('div');
+                    row.className = 'item-row';
+                    row.innerHTML = `
+                        <div class="item-info">
+                            ${item.img ? `<img src="${item.img}" class="item-thumb" alt="Thumb">` : ''}
+                            <span class="item-title">${item.title} ($${Number(item.price).toFixed(2)})</span>
+                        </div>
+                        <button class="del-btn" onclick="removeCloudProduct('${docId}')">Delete</button>
+                    `;
+                    listArea.appendChild(row);
+                });
+            });
+        }
+
+        function popAlertToast(msg) {
+            const toast = document.getElementById('alertToast');
+            toast.innerText = msg;
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 2500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jordan Store | Premium Sneaker Affiliate</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --surface-color: #161616;
+            --surface-accent: #1f1f1f;
+            --accent-color: #ff003c;
+            --accent-hover: #cc0030;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-color: #262626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-top: 90px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(22, 22, 22, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s;
+        }
+        .logo:hover { transform: scale(1.02); }
+        .logo span { color: var(--accent-color); }
+
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface-color);
+            padding: 16px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 25px 0 35px 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .filter-group, .sort-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .controls-bar label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .select-filter {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .select-filter:focus { border-color: var(--accent-color); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: cardAppear 0.4s ease forwards;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 30px rgba(255, 0, 60, 0.15);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid var(--border-color);
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 2;
+            color: var(--accent-color);
+        }
+
+        .img-wrapper {
+            width: 100%;
+            height: 240px;
+            background: var(--surface-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .img-wrapper img { transform: scale(1.08); }
+
+        .img-placeholder {
+            color: var(--text-muted);
+            font-size: 28px;
+            font-weight: 800;
+            opacity: 0.15;
+        }
+
+        .info {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .info h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .info .price {
+            color: var(--accent-color);
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .info .click-hint {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: auto;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.92);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .modal-backdrop.open .modal-content { transform: scale(1); }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-modal-btn:hover { background: var(--accent-color); }
+
+        .modal-img-wrapper {
+            width: 100%;
+            height: 320px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modal-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-body { padding: 25px 30px; }
+        .modal-category { font-size: 11px; font-weight: 800; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .modal-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+        .modal-price { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 15px; }
+        .modal-desc { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 25px; max-height: 100px; overflow-y: auto; }
+
+        .modal-buy-btn {
+            background: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            text-align: center;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .modal-buy-btn:hover { background: var(--accent-hover); }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 70px 20px;
+            background: var(--surface-color);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes cardAppear { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">JORDAN<span>STORE</span></a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Filter Controls -->
+        <div class="controls-bar">
+            <div class="filter-group">
+                <label for="categoryFilter">Category</label>
+                <select id="categoryFilter" class="select-filter" onchange="renderShowroomView()">
+                    <option value="ALL">All Sneakers</option>
+                    <option value="Retro">Retro Collection</option>
+                    <option value="Lifestyle">Lifestyle</option>
+                    <option value="Performance">Performance</option>
+                    <option value="Limited">Limited Edition</option>
+                </select>
+            </div>
+            <div class="sort-group">
+                <label for="sortFilter">Sort By</label>
+                <select id="sortFilter" class="select-filter" onchange="renderShowroomView()">
+                    <option value="DEFAULT">Featured</option>
+                    <option value="LOW_TO_HIGH">Price: Low to High</option>
+                    <option value="HIGH_TO_LOW">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid" id="productGrid"></div>
+    </main>
+
+    <!-- Details Modal -->
+    <div class="modal-backdrop" id="productModal" onclick="closeProductModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal-btn" onclick="closeProductModal()">&times;</button>
+            <div class="modal-img-wrapper" id="modalImgContainer"></div>
+            <div class="modal-body">
+                <div class="modal-category" id="modalCategory"></div>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+                <p class="modal-desc" id="modalDesc"></p>
+                <a href="#" target="_blank" rel="noopener noreferrer" id="modalBuyBtn" class="modal-buy-btn">Purchase Product</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK Integration & Rendering Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+ // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDggq2H6VpwteslozxGeYEy4ocyS8d_tAo",
+  authDomain: "jordan-store-1.firebaseapp.com",
+  projectId: "jordan-store-1",
+  storageBucket: "jordan-store-1.firebasestorage.app",
+  messagingSenderId: "830846757501",
+  appId: "1:830846757501:web:7fd37fcb86ef9e30d31f14",
+  measurementId: "G-5NK1N5GX8J"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        let cloudProducts = [];
+
+        // Real-time synchronization across all live site visitors
+        const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
+        onSnapshot(q, (snapshot) => {
+            cloudProducts = [];
+            snapshot.forEach(docSnap => {
+                cloudProducts.push({ id: docSnap.id, ...docSnap.data() });
+            });
+            renderShowroomView();
+        });
+
+        window.renderShowroomView = function() {
+            const displayGrid = document.getElementById('productGrid');
+            const categoryValue = document.getElementById('categoryFilter').value;
+            const sortValue = document.getElementById('sortFilter').value;
+
+            displayGrid.innerHTML = '';
+
+            let filtered = cloudProducts.filter(item => {
+                if (categoryValue === 'ALL') return true;
+                return (item.category || 'Retro') === categoryValue;
+            });
+
+            if (sortValue === 'LOW_TO_HIGH') {
+                filtered.sort((a, b) => Number(a.price) - Number(b.price));
+            } else if (sortValue === 'HIGH_TO_LOW') {
+                filtered.sort((a, b) => Number(b.price) - Number(a.price));
+            }
+
+            if (filtered.length === 0) {
+                displayGrid.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No Sneakers Available</h3>
+                        <p style="margin-top:8px;">No items match this filter or the cloud catalog is currently empty.</p>
+                    </div>`;
+                return;
+            }
+
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => openProductModal(product);
+
+                let imageHtml = `<div class="img-wrapper"><div class="img-placeholder">JORDAN</div></div>`;
+                if (product.img && product.img.trim() !== "") {
+                    imageHtml = `<div class="img-wrapper"><img src="${product.img}" alt="${product.title}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'>IMAGE ERROR</div>'"></div>`;
+                }
+
+                card.innerHTML = `
+                    <div class="card-badge">${product.category || 'Collection'}</div>
+                    ${imageHtml}
+                    <div class="info">
+                        <h3>${product.title}</h3>
+                        <div class="price">$${Number(product.price).toFixed(2)}</div>
+                        <div class="click-hint">Click to view details ↗</div>
+                    </div>
+                `;
+                displayGrid.appendChild(card);
+            });
+        };
+
+        window.openProductModal = function(product) {
+            const modal = document.getElementById('productModal');
+            const imgWrapper = document.getElementById('modalImgContainer');
+            
+            document.getElementById('modalCategory').innerText = product.category || 'Jordan Collection';
+            document.getElementById('modalTitle').innerText = product.title;
+            document.getElementById('modalPrice').innerText = `$${Number(product.price).toFixed(2)}`;
+            document.getElementById('modalDesc').innerText = product.desc || 'Premium Jumpman gear curated exclusively by our affiliate network.';
+            
+            const buyLink = document.getElementById('modalBuyBtn');
+            buyLink.href = encodeURI(product.link);
+
+            if (product.img && product.img.trim() !== "") {
+                imgWrapper.innerHTML = `<img src="${product.img}" alt="${product.title}">`;
+            } else {
+                imgWrapper.innerHTML = `<div class="img-placeholder" style="font-size:40px;">JORDAN</div>`;
+            }
+
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeProductModal = function(event) {
+            if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-modal-btn')) {
+                return;
+            }
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        };
+    </script>
+</body>
+</html>
