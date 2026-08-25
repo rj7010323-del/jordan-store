@@ -446,7 +446,7 @@
             
             document.getElementById('modalCategory').innerText = product.category || 'Jordan Collection';
             document.getElementById('modalTitle').innerText = product.title;
-            document.getElementById('modalPrice').innerText = `$${Number(product.price).toFixed(2)}`;
+            document.getElementById('modalPrice').innerText = `$₹{Number(product.price).toFixed(2)}`;
             document.getElementById('modalDesc').innerText = product.desc || 'Premium Jumpman gear curated exclusively by our affiliate network.';
             
             const buyLink = document.getElementById('modalBuyBtn');
