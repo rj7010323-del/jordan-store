@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>JORDAN STORE | Exclusive Sneaker Archive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,18 +40,18 @@
                 radial-gradient(circle at 10% 10%, rgba(255, 30, 66, 0.08) 0%, transparent 45%),
                 radial-gradient(circle at 90% 90%, rgba(229, 184, 105, 0.07) 0%, transparent 45%);
             background-attachment: fixed;
-            padding-top: 90px;
+            padding-top: 80px;
         }
 
         .container {
             max-width: 1260px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 16px;
         }
 
         /* Glass Header */
         header {
-            background: rgba(10, 10, 14, 0.85);
+            background: rgba(10, 10, 14, 0.88);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glass);
@@ -66,19 +66,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
+            padding: 14px 0;
         }
 
-        /* Shuffling Animated Logo */
         .logo {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-decoration: none;
             color: #fff;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .shuffle-word {
@@ -89,40 +88,39 @@
         }
 
         .shuffle-word.flip-out {
-            transform: translateY(-12px) rotateX(75deg);
+            transform: translateY(-10px) rotateX(75deg);
             opacity: 0;
         }
 
         .shuffle-word.flip-in {
-            transform: translateY(12px) rotateX(-75deg);
+            transform: translateY(10px) rotateX(-75deg);
             opacity: 0;
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .icon-only-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 42px;
-            height: 42px;
+            width: 38px;
+            height: 38px;
             background: var(--surface-panel);
             border: 1px solid var(--border-glass);
             color: var(--text-pure);
             text-decoration: none;
             border-radius: 50%;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
         }
 
         .icon-only-btn svg {
-            width: 18px;
-            height: 18px;
+            width: 17px;
+            height: 17px;
             fill: currentColor;
-            transition: transform 0.3s ease;
         }
 
         .icon-only-btn:hover {
@@ -133,28 +131,24 @@
             transform: translateY(-2px);
         }
 
-        .icon-only-btn:hover svg {
-            transform: scale(1.15);
-        }
-
         .email-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: var(--surface-panel);
             border: 1px solid var(--border-glass);
             color: var(--text-pure);
             text-decoration: none;
-            padding: 9px 18px;
+            padding: 8px 14px;
             border-radius: 30px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
         }
 
         .email-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             fill: currentColor;
         }
 
@@ -162,14 +156,14 @@
             border-color: var(--gold-primary);
             background: rgba(229, 184, 105, 0.12);
             color: #fff;
-            box-shadow: 0 4px 20px var(--gold-glow);
+            box-shadow: 0 4px 16px var(--gold-glow);
             transform: translateY(-2px);
         }
 
         /* Top 5 Latest Uploads Slider */
         .featured-slider-section {
-            margin-top: 20px;
-            margin-bottom: 30px;
+            margin-top: 15px;
+            margin-bottom: 25px;
             position: relative;
         }
 
@@ -177,47 +171,48 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .slider-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             color: var(--gold-primary);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .slider-title::before {
             content: '';
             display: inline-block;
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background: var(--jordan-red);
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--jordan-red);
+            box-shadow: 0 0 8px var(--jordan-red);
         }
 
         .slider-controls {
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
 
         .slider-arrow {
             background: var(--surface-panel);
             border: 1px solid var(--border-glass);
             color: var(--text-pure);
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s;
+            font-size: 11px;
         }
 
         .slider-arrow:hover {
@@ -228,11 +223,12 @@
 
         .slider-container {
             display: flex;
-            gap: 20px;
+            gap: 14px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding-bottom: 12px;
+            padding-bottom: 8px;
             scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
 
         .slider-container::-webkit-scrollbar {
@@ -240,25 +236,23 @@
         }
 
         .slide-item {
-            flex: 0 0 240px;
+            flex: 0 0 200px;
             background: var(--surface-card);
             border: 1px solid var(--border-glass);
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
             position: relative;
-            transition: all 0.3s ease;
+            transition: transform 0.25s ease;
         }
 
-        .slide-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold-primary);
-            box-shadow: 0 10px 25px var(--gold-glow);
+        .slide-item:active {
+            transform: scale(0.97);
         }
 
         .slide-img-box {
             width: 100%;
-            height: 160px;
+            height: 140px;
             background: var(--surface-panel);
             overflow: hidden;
             position: relative;
@@ -268,29 +262,24 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .slide-item:hover .slide-img-box img {
-            transform: scale(1.08);
         }
 
         .slide-info {
-            padding: 12px 14px;
+            padding: 10px 12px;
         }
 
         .slide-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             color: #fff;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .slide-price {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 900;
             color: var(--gold-primary);
         }
@@ -299,28 +288,28 @@
         .controls-bar {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
             justify-content: space-between;
             align-items: center;
             background: var(--surface-panel);
-            padding: 16px 24px;
-            border-radius: 14px;
+            padding: 14px 18px;
+            border-radius: 12px;
             border: 1px solid var(--border-glass);
-            margin-top: 15px;
-            margin-bottom: 35px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .filter-group, .sort-group {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex: 1 1 auto;
         }
 
         .controls-bar label {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+            letter-spacing: 1px;
             color: var(--text-sub);
             font-weight: 800;
         }
@@ -329,59 +318,59 @@
             background: var(--surface-accent);
             border: 1px solid var(--border-glass);
             color: #fff;
-            padding: 10px 18px;
+            padding: 9px 14px;
             border-radius: 8px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             cursor: pointer;
             outline: none;
-            transition: all 0.25s ease;
-        }
-
-        .select-filter:hover, .select-filter:focus {
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 15px var(--gold-glow);
+            width: 100%;
+            max-width: 220px;
         }
 
         /* Main Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
             margin-bottom: 40px;
         }
 
         .card {
             background: var(--surface-card);
             border: 1px solid var(--border-glass);
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             cursor: pointer;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             border-color: var(--border-hover);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px var(--gold-glow);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7), 0 0 20px var(--gold-glow);
+        }
+
+        .card:active {
+            transform: scale(0.98);
         }
 
         .card-badge {
             position: absolute;
-            top: 14px;
-            left: 14px;
+            top: 10px;
+            left: 10px;
             background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             border: 1px solid var(--border-glass);
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 5px 12px;
+            letter-spacing: 0.8px;
+            padding: 4px 10px;
             border-radius: 6px;
             z-index: 2;
             color: var(--gold-primary);
@@ -389,7 +378,7 @@
 
         .img-wrapper {
             width: 100%;
-            height: 270px;
+            height: 240px;
             background: var(--surface-panel);
             display: flex;
             align-items: center;
@@ -402,32 +391,32 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.5s ease;
         }
 
         .card:hover .img-wrapper img {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
 
         .img-placeholder {
             color: var(--text-sub);
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 900;
             opacity: 0.15;
             letter-spacing: 2px;
         }
 
         .info {
-            padding: 22px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .info h3 {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -437,56 +426,51 @@
         .info .price {
             color: var(--gold-primary);
             font-weight: 900;
-            font-size: 19px;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
+            font-size: 17px;
+            margin-bottom: 10px;
         }
 
         .info .click-hint {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             color: var(--text-sub);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             margin-top: auto;
             display: flex;
             align-items: center;
-            gap: 5px;
-            transition: color 0.2s;
-        }
-
-        .card:hover .info .click-hint {
-            color: var(--jordan-red);
+            gap: 4px;
         }
 
         /* Bottom Hero Statement Banner */
         .bottom-brand-banner {
-            padding: 50px 0 20px;
+            padding: 40px 0 20px;
             text-align: center;
+            border-top: 1px solid var(--border-glass);
+            margin-top: 20px;
         }
 
         .bottom-brand-tag {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
             background: rgba(229, 184, 105, 0.1);
             border: 1px solid rgba(229, 184, 105, 0.3);
             color: var(--gold-primary);
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 6px 16px;
+            letter-spacing: 1.5px;
+            padding: 5px 14px;
             border-radius: 30px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .bottom-brand-banner h2 {
-            font-size: clamp(26px, 4.5vw, 42px);
+            font-size: clamp(22px, 4vw, 36px);
             font-weight: 900;
             letter-spacing: -0.5px;
             line-height: 1.2;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             background: linear-gradient(180deg, #ffffff 40%, #a4a8b7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -494,13 +478,13 @@
 
         .bottom-brand-banner p {
             color: var(--text-sub);
-            font-size: 15px;
-            max-width: 620px;
+            font-size: 14px;
+            max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
         }
 
-        /* Slide-Out Sidebar Details Panel */
+        /* Side-Drawer Details Panel & Mobile Bottom Sheet */
         .sidebar-backdrop {
             position: fixed;
             top: 0;
@@ -508,11 +492,12 @@
             width: 100vw;
             height: 100vh;
             background: rgba(4, 4, 6, 0.85);
-            backdrop-filter: blur(14px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.35s ease;
         }
 
         .sidebar-backdrop.open {
@@ -523,7 +508,7 @@
         .product-sidebar {
             position: fixed;
             top: 0;
-            right: -500px;
+            right: -520px;
             width: 100%;
             max-width: 480px;
             height: 100vh;
@@ -533,23 +518,33 @@
             display: flex;
             flex-direction: column;
             box-shadow: -20px 0 60px rgba(0, 0, 0, 0.9);
-            transition: right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .sidebar-backdrop.open .product-sidebar {
             right: 0;
         }
 
+        .mobile-drag-handle {
+            display: none;
+            width: 40px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 4px;
+            margin: 10px auto 4px;
+        }
+
         .sidebar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 26px;
+            padding: 16px 22px;
             border-bottom: 1px solid var(--border-glass);
             position: sticky;
             top: 0;
-            background: rgba(15, 15, 20, 0.9);
+            background: rgba(15, 15, 20, 0.95);
             backdrop-filter: blur(10px);
             z-index: 10;
         }
@@ -558,7 +553,7 @@
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             color: var(--gold-primary);
         }
 
@@ -566,10 +561,10 @@
             background: var(--surface-accent);
             border: 1px solid var(--border-glass);
             color: #fff;
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -580,18 +575,18 @@
         .close-sidebar-btn:hover {
             background: var(--jordan-red);
             border-color: var(--jordan-red);
-            box-shadow: 0 0 15px var(--jordan-glow);
         }
 
         .sidebar-img-wrapper {
             width: 100%;
-            height: 320px;
+            height: 280px;
             background: var(--surface-card);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             border-bottom: 1px solid var(--border-glass);
+            position: relative;
         }
 
         .sidebar-img-wrapper img {
@@ -601,7 +596,7 @@
         }
 
         .sidebar-body {
-            padding: 30px 26px;
+            padding: 22px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -612,83 +607,161 @@
             font-weight: 800;
             color: var(--gold-primary);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 6px;
+            letter-spacing: 1.2px;
+            margin-bottom: 4px;
         }
 
         .sidebar-title {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 900;
-            margin-bottom: 10px;
-            line-height: 1.2;
+            margin-bottom: 8px;
+            line-height: 1.25;
             color: #fff;
         }
 
         .sidebar-price {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             color: var(--gold-primary);
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             letter-spacing: -0.5px;
         }
 
         .sidebar-desc {
             color: var(--text-sub);
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 30px;
+            font-size: 13.5px;
+            line-height: 1.65;
+            margin-bottom: 24px;
         }
 
         .sidebar-buy-btn {
             background: linear-gradient(135deg, var(--gold-primary), #c99c4e);
             color: #000;
             text-decoration: none;
-            padding: 16px;
+            padding: 15px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             border-radius: 10px;
             text-align: center;
             display: block;
-            box-shadow: 0 10px 28px var(--gold-glow);
-            transition: all 0.25s ease;
+            box-shadow: 0 8px 24px var(--gold-glow);
+            transition: all 0.2s ease;
             margin-top: auto;
         }
 
-        .sidebar-buy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(229, 184, 105, 0.45);
+        .sidebar-buy-btn:active {
+            transform: scale(0.98);
         }
 
         .empty-state {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
             background: var(--surface-panel);
             border: 2px dashed var(--border-glass);
-            border-radius: 16px;
+            border-radius: 14px;
             color: var(--text-sub);
         }
 
-        /* Footer */
+        /* Footer & Corrected Rights Line */
         footer {
             border-top: 1px solid var(--border-glass);
-            padding: 40px 0;
+            padding: 30px 0;
             background: var(--surface-panel);
             text-align: center;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
-        footer p {
+        .rights-statement {
             color: var(--text-sub);
-            font-size: 13px;
-            margin-bottom: 16px;
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 14px;
+            gap: 12px;
+        }
+
+        /* Mobile & Smartphone Responsive Adaptations */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 14px;
+            }
+
+            .img-wrapper {
+                height: 170px;
+            }
+
+            .info {
+                padding: 12px;
+            }
+
+            .info h3 {
+                font-size: 13px;
+            }
+
+            .info .price {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+
+            .controls-bar {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 12px 14px;
+            }
+
+            .select-filter {
+                max-width: 100%;
+            }
+
+            /* Responsive Bottom-Sheet on Mobile */
+            .product-sidebar {
+                top: auto;
+                bottom: -100%;
+                right: 0;
+                max-width: 100%;
+                height: 85vh;
+                border-left: none;
+                border-top: 1px solid var(--border-glass);
+                border-radius: 20px 20px 0 0;
+                transition: bottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .sidebar-backdrop.open .product-sidebar {
+                bottom: 0;
+                right: 0;
+            }
+
+            .mobile-drag-handle {
+                display: block;
+            }
+
+            .sidebar-img-wrapper {
+                height: 220px;
+            }
+
+            .sidebar-title {
+                font-size: 18px;
+            }
+
+            .sidebar-price {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -697,17 +770,16 @@
     <!-- Header Navigation -->
     <header>
         <div class="container nav-container">
-            <!-- Animated Shuffle Logo -->
             <a href="#" class="logo">
                 <span>JORDAN</span>
                 <span class="shuffle-word" id="brandWord">STORE</span>
             </a>
             <div class="nav-actions">
-                <!-- Instagram Icon Only -->
+                <!-- Instagram Direct Icon -->
                 <a href="https://www.instagram.com/jordan_store.___/" target="_blank" rel="noopener noreferrer" class="icon-only-btn" title="Follow us on Instagram">
                     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <!-- Email Direct Launch -->
+                <!-- Email Compose Launcher -->
                 <a href="mailto:rj7010323@gmail.com?subject=Jordan%20Store%20Inquiry" class="email-btn">
                     <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
                     <span>Email Us</span>
@@ -716,25 +788,25 @@
         </div>
     </header>
 
-    <!-- Top 5 Latest Uploads Slidebar -->
+    <!-- Top 5 Latest Uploads Slider -->
     <section class="featured-slider-section container" id="featuredSliderSection" style="display: none;">
         <div class="slider-header">
-            <div class="slider-title">Latest Vault Arrivals</div>
+            <div class="slider-title">Latest Arrivals</div>
             <div class="slider-controls">
-                <button class="slider-arrow" onclick="scrollSlider(-260)">&#10094;</button>
-                <button class="slider-arrow" onclick="scrollSlider(260)">&#10095;</button>
+                <button class="slider-arrow" onclick="scrollSlider(-220)">&#10094;</button>
+                <button class="slider-arrow" onclick="scrollSlider(220)">&#10095;</button>
             </div>
         </div>
         <div class="slider-container" id="featuredSlider"></div>
     </section>
 
-    <!-- Main Catalog View -->
+    <!-- Catalog View -->
     <main class="container">
         <div class="controls-bar">
             <div class="filter-group">
-                <label for="categoryFilter">Filter By</label>
+                <label for="categoryFilter">Category</label>
                 <select id="categoryFilter" class="select-filter" onchange="renderShowroomView()">
-                    <option value="ALL">All Archive Editions</option>
+                    <option value="ALL">All Editions</option>
                     <option value="Retro">Retro Collection</option>
                     <option value="Lifestyle">Lifestyle</option>
                     <option value="Performance">Performance</option>
@@ -742,9 +814,9 @@
                 </select>
             </div>
             <div class="sort-group">
-                <label for="sortFilter">Sort Order</label>
+                <label for="sortFilter">Sort</label>
                 <select id="sortFilter" class="select-filter" onchange="renderShowroomView()">
-                    <option value="DEFAULT">Featured Highlights</option>
+                    <option value="DEFAULT">Featured</option>
                     <option value="LOW_TO_HIGH">Price: Low to High</option>
                     <option value="HIGH_TO_LOW">Price: High to Low</option>
                 </select>
@@ -753,7 +825,7 @@
 
         <div class="grid" id="productGrid"></div>
 
-        <!-- Replaced Statement Section (Positioned Under Products) -->
+        <!-- Replaced Bottom Statement Section -->
         <section class="bottom-brand-banner">
             <div class="bottom-brand-tag">Verified Archive Collection</div>
             <h2>The Pinnacle of Sneaker Culture.</h2>
@@ -761,13 +833,15 @@
         </section>
     </main>
 
-    <!-- Slide-Out Sidebar Details Panel -->
+    <!-- Slide-Out Sidebar / Mobile Bottom Sheet Details Panel -->
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeProductSidebar(event)">
         <div class="product-sidebar" onclick="event.stopPropagation()">
+            <div class="mobile-drag-handle"></div>
             <div class="sidebar-header">
                 <span id="sidebarHeaderTag">Exclusive Sneaker</span>
                 <button class="close-sidebar-btn" onclick="closeProductSidebar()">&times;</button>
             </div>
+            <!-- Guaranteed High-Res Image Area in Description -->
             <div class="sidebar-img-wrapper" id="sidebarImgContainer"></div>
             <div class="sidebar-body">
                 <div class="sidebar-category" id="sidebarCategory"></div>
@@ -779,12 +853,12 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Corrected Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Jordan Store Network. Curated exclusively for sneaker connoisseurs.</p>
+            <p class="rights-statement">&copy; 2026 JORDAN STORE. All Rights Reserved.</p>
             <div class="footer-links">
-                <a href="https://www.instagram.com/jordan_store.___/" target="_blank" rel="noopener noreferrer" class="email-btn">Instagram Profile</a>
+                <a href="https://www.instagram.com/jordan_store.___/" target="_blank" rel="noopener noreferrer" class="email-btn">Instagram: @jordan_store.___</a>
                 <a href="mailto:rj7010323@gmail.com" class="email-btn">rj7010323@gmail.com</a>
             </div>
         </div>
@@ -860,7 +934,7 @@
 
                 let imgBlock = `<div class="slide-img-box"><div class="img-placeholder" style="display:flex; align-items:center; justify-content:center; height:100%;">JORDAN</div></div>`;
                 if (product.img && product.img.trim() !== "") {
-                    imgBlock = `<div class="slide-img-box"><img src="${product.img}" alt="${product.title}"></div>`;
+                    imgBlock = `<div class="slide-img-box"><img src="${product.img}" alt="${product.title}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\' style=\\'display:flex;align-items:center;justify-content:center;height:100%;\\'>JORDAN</div>'"></div>`;
                 }
 
                 item.innerHTML = `
@@ -900,8 +974,8 @@
             if (filtered.length === 0) {
                 displayGrid.innerHTML = `
                     <div class="empty-state">
-                        <h3 style="font-size:18px; color:#fff; margin-bottom:8px;">No Vault Items Found</h3>
-                        <p>No listings match the current filters.</p>
+                        <h3 style="font-size:16px; color:#fff; margin-bottom:6px;">No Products Found</h3>
+                        <p style="font-size:13px;">No items match the selected filter.</p>
                     </div>`;
                 return;
             }
@@ -913,7 +987,7 @@
 
                 let imageHtml = `<div class="img-wrapper"><div class="img-placeholder">JORDAN</div></div>`;
                 if (product.img && product.img.trim() !== "") {
-                    imageHtml = `<div class="img-wrapper"><img src="${product.img}" alt="${product.title}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'>IMAGE ERROR</div>'"></div>`;
+                    imageHtml = `<div class="img-wrapper"><img src="${product.img}" alt="${product.title}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'>JORDAN</div>'"></div>`;
                 }
 
                 card.innerHTML = `
@@ -922,7 +996,7 @@
                     <div class="info">
                         <h3>${product.title}</h3>
                         <div class="price">₹${Number(product.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
-                        <div class="click-hint">Inspect Sidebar <span>→</span></div>
+                        <div class="click-hint">Inspect Details <span>→</span></div>
                     </div>
                 `;
                 displayGrid.appendChild(card);
@@ -942,10 +1016,11 @@
             const buyLink = document.getElementById('sidebarBuyBtn');
             buyLink.href = encodeURI(product.link);
 
+            // Always render product image inside the sidebar description modal
             if (product.img && product.img.trim() !== "") {
-                imgWrapper.innerHTML = `<img src="${product.img}" alt="${product.title}">`;
+                imgWrapper.innerHTML = `<img src="${product.img}" alt="${product.title}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\' style=\\'font-size:32px;\\'>JORDAN</div>'">`;
             } else {
-                imgWrapper.innerHTML = `<div class="img-placeholder" style="font-size:36px;">JORDAN</div>`;
+                imgWrapper.innerHTML = `<div class="img-placeholder" style="font-size:32px;">JORDAN</div>`;
             }
 
             backdrop.classList.add('open');
