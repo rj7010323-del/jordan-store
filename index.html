@@ -3,43 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan Store | Premium Sneaker Affiliate</title>
+    <title>Jordan Store | Exclusive Sneaker Vault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0b0b;
-            --surface-color: #161616;
-            --surface-accent: #1f1f1f;
-            --accent-color: #ff003c;
-            --accent-hover: #cc0030;
-            --text-main: #ffffff;
-            --text-muted: #aaaaaa;
-            --border-color: #262626;
+            --bg-base: #060608;
+            --surface-1: #101015;
+            --surface-2: #171720;
+            --surface-glass: rgba(18, 18, 26, 0.75);
+            --neon-red: #ff0048;
+            --neon-glow: rgba(255, 0, 72, 0.35);
+            --cyan-accent: #00f2fe;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 0, 72, 0.4);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-base);
             color: var(--text-main);
-            padding-top: 90px;
             min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 0, 72, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(0, 242, 254, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
+        /* Top Navigation */
         header {
-            background: rgba(22, 22, 22, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
+            background: var(--surface-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
             position: fixed;
             width: 100%;
             top: 0;
@@ -50,32 +62,113 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 0;
+            padding: 16px 0;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             letter-spacing: 2px;
             text-decoration: none;
             color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo span {
+            color: var(--neon-red);
+            text-shadow: 0 0 16px var(--neon-glow);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface-2);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+
+        .social-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
             transition: transform 0.2s;
         }
-        .logo:hover { transform: scale(1.02); }
-        .logo span { color: var(--accent-color); }
 
+        .social-btn:hover {
+            border-color: var(--neon-red);
+            background: rgba(255, 0, 72, 0.1);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--neon-glow);
+        }
+
+        .social-btn:hover svg {
+            transform: scale(1.15);
+        }
+
+        /* Hero Header */
+        .hero {
+            padding: 130px 0 30px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 0, 72, 0.12);
+            border: 1px solid rgba(255, 0, 72, 0.3);
+            color: var(--neon-red);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 15px;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* Controls / Filter Bar */
         .controls-bar {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 16px;
             justify-content: space-between;
             align-items: center;
-            background: var(--surface-color);
-            padding: 16px 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
+            background: var(--surface-1);
+            padding: 16px 22px;
+            border-radius: 12px;
+            border: 1px solid var(--border-subtle);
             margin: 25px 0 35px 0;
-            animation: fadeIn 0.5s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .filter-group, .sort-group {
@@ -89,129 +182,150 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .select-filter {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
+            background: var(--surface-2);
+            border: 1px solid var(--border-subtle);
             color: #fff;
-            padding: 8px 14px;
-            border-radius: 6px;
+            padding: 9px 16px;
+            border-radius: 8px;
             font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
         }
 
-        .select-filter:focus { border-color: var(--accent-color); }
+        .select-filter:focus, .select-filter:hover {
+            border-color: var(--neon-red);
+        }
 
+        /* Product Showcase Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+            margin-bottom: 60px;
         }
 
         .card {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
+            background: var(--surface-1);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             cursor: pointer;
             position: relative;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            animation: cardAppear 0.4s ease forwards;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
         .card:hover {
             transform: translateY(-8px);
-            border-color: var(--accent-color);
-            box-shadow: 0 15px 30px rgba(255, 0, 60, 0.15);
+            border-color: var(--border-hover);
+            box-shadow: 0 16px 36px var(--neon-glow);
         }
 
         .card-badge {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(0, 0, 0, 0.75);
-            border: 1px solid var(--border-color);
+            top: 14px;
+            left: 14px;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
-            padding: 4px 8px;
-            border-radius: 4px;
+            letter-spacing: 0.8px;
+            padding: 4px 10px;
+            border-radius: 6px;
             z-index: 2;
-            color: var(--accent-color);
+            color: var(--neon-red);
         }
 
         .img-wrapper {
             width: 100%;
-            height: 240px;
-            background: var(--surface-accent);
+            height: 260px;
+            background: var(--surface-2);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            position: relative;
         }
 
         .img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .card:hover .img-wrapper img { transform: scale(1.08); }
+        .card:hover .img-wrapper img {
+            transform: scale(1.08);
+        }
 
         .img-placeholder {
             color: var(--text-muted);
-            font-size: 28px;
-            font-weight: 800;
-            opacity: 0.15;
+            font-size: 26px;
+            font-weight: 900;
+            opacity: 0.2;
+            letter-spacing: 2px;
         }
 
         .info {
-            padding: 18px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .info h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 6px;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 8px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: #fff;
         }
 
         .info .price {
-            color: var(--accent-color);
-            font-weight: 800;
-            font-size: 16px;
-            margin-bottom: 8px;
+            color: var(--neon-red);
+            font-weight: 900;
+            font-size: 18px;
+            margin-bottom: 12px;
         }
 
         .info .click-hint {
             font-size: 11px;
+            font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
         }
 
+        .card:hover .info .click-hint {
+            color: var(--cyan-accent);
+        }
+
+        /* Modal Quickview */
         .modal-backdrop {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(4, 4, 8, 0.85);
+            backdrop-filter: blur(12px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -221,48 +335,56 @@
             padding: 20px;
         }
 
-        .modal-backdrop.open { display: flex; opacity: 1; }
+        .modal-backdrop.open {
+            display: flex;
+            opacity: 1;
+        }
 
         .modal-content {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
+            background: var(--surface-1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             width: 100%;
-            max-width: 650px;
-            border-radius: 12px;
+            max-width: 620px;
+            border-radius: 16px;
             overflow: hidden;
             position: relative;
             transform: scale(0.92);
             transition: transform 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
         }
 
-        .modal-backdrop.open .modal-content { transform: scale(1); }
+        .modal-backdrop.open .modal-content {
+            transform: scale(1);
+        }
 
         .close-modal-btn {
             position: absolute;
-            top: 15px;
+            top: 16px;
             right: 18px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid var(--border-subtle);
             color: #fff;
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
-        .close-modal-btn:hover { background: var(--accent-color); }
+        .close-modal-btn:hover {
+            background: var(--neon-red);
+            border-color: var(--neon-red);
+        }
 
         .modal-img-wrapper {
             width: 100%;
-            height: 320px;
-            background: #111;
+            height: 300px;
+            background: var(--surface-2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -275,57 +397,129 @@
             object-fit: cover;
         }
 
-        .modal-body { padding: 25px 30px; }
-        .modal-category { font-size: 11px; font-weight: 800; color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-        .modal-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
-        .modal-price { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 15px; }
-        .modal-desc { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 25px; max-height: 100px; overflow-y: auto; }
+        .modal-body {
+            padding: 26px 30px;
+        }
+
+        .modal-category {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--neon-red);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 6px;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .modal-price {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--cyan-accent);
+            margin-bottom: 14px;
+        }
+
+        .modal-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            max-height: 110px;
+            overflow-y: auto;
+        }
 
         .modal-buy-btn {
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--neon-red), #d90038);
             color: #fff;
             text-decoration: none;
-            padding: 14px;
+            padding: 15px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-radius: 6px;
+            border-radius: 8px;
             text-align: center;
             display: block;
-            transition: background 0.2s;
+            box-shadow: 0 8px 24px var(--neon-glow);
+            transition: all 0.2s;
         }
 
-        .modal-buy-btn:hover { background: var(--accent-hover); }
+        .modal-buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 0, 72, 0.55);
+        }
 
         .empty-state {
             grid-column: 1 / -1;
             text-align: center;
             padding: 70px 20px;
-            background: var(--surface-color);
-            border: 2px dashed var(--border-color);
-            border-radius: 8px;
+            background: var(--surface-1);
+            border: 2px dashed var(--border-subtle);
+            border-radius: 14px;
             color: var(--text-muted);
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes cardAppear { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 35px 0;
+            background: var(--surface-1);
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Header Navigation -->
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">JORDAN<span>STORE</span></a>
+            <a href="#" class="logo">JORDAN<span>VAULT</span></a>
+            <div class="nav-actions">
+                <!-- Instagram Link -->
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>Instagram</span>
+                </a>
+                <!-- Email Us Link -->
+                <a href="mailto:support@jordanstore.com?subject=Sneaker%20Inquiry" class="social-btn">
+                    <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+                    <span>Email Us</span>
+                </a>
+            </div>
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero container">
+        <span class="hero-badge">Curated Collection</span>
+        <h1>Engineered for Greatness.</h1>
+        <p>Discover the most coveted Jordan releases, performance footwear, and limited edition retros.</p>
+    </section>
+
+    <!-- Catalog View -->
     <main class="container">
-        <!-- Filter Controls -->
         <div class="controls-bar">
             <div class="filter-group">
                 <label for="categoryFilter">Category</label>
                 <select id="categoryFilter" class="select-filter" onchange="renderShowroomView()">
-                    <option value="ALL">All Sneakers</option>
+                    <option value="ALL">All Vault Items</option>
                     <option value="Retro">Retro Collection</option>
                     <option value="Lifestyle">Lifestyle</option>
                     <option value="Performance">Performance</option>
@@ -345,7 +539,7 @@
         <div class="grid" id="productGrid"></div>
     </main>
 
-    <!-- Details Modal -->
+    <!-- Quickview Modal -->
     <div class="modal-backdrop" id="productModal" onclick="closeProductModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="close-modal-btn" onclick="closeProductModal()">&times;</button>
@@ -360,7 +554,18 @@
         </div>
     </div>
 
-    <!-- Firebase SDK Integration & Rendering Logic -->
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Jordan Vault Network. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn">Instagram</a>
+                <a href="mailto:support@jordanstore.com" class="social-btn">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -379,7 +584,6 @@
         const db = getFirestore(app);
         let cloudProducts = [];
 
-        // Real-time synchronization across all live site visitors
         const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
         onSnapshot(q, (snapshot) => {
             cloudProducts = [];
@@ -410,8 +614,8 @@
             if (filtered.length === 0) {
                 displayGrid.innerHTML = `
                     <div class="empty-state">
-                        <h3>No Sneakers Available</h3>
-                        <p style="margin-top:8px;">No items match this filter or the cloud catalog is currently empty.</p>
+                        <h3 style="font-size:18px; color:#fff; margin-bottom:8px;">No Sneakers Found</h3>
+                        <p>No listings match the current filters.</p>
                     </div>`;
                 return;
             }
@@ -432,7 +636,7 @@
                     <div class="info">
                         <h3>${product.title}</h3>
                         <div class="price">₹${Number(product.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
-                        <div class="click-hint">Click to view details ↗</div>
+                        <div class="click-hint">Inspect Details <span>→</span></div>
                     </div>
                 `;
                 displayGrid.appendChild(card);
@@ -443,10 +647,10 @@
             const modal = document.getElementById('productModal');
             const imgWrapper = document.getElementById('modalImgContainer');
             
-            document.getElementById('modalCategory').innerText = product.category || 'Jordan Collection';
+            document.getElementById('modalCategory').innerText = product.category || 'Jordan Vault Exclusive';
             document.getElementById('modalTitle').innerText = product.title;
             document.getElementById('modalPrice').innerText = `₹${Number(product.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-            document.getElementById('modalDesc').innerText = product.desc || 'Premium Jumpman gear curated exclusively by our affiliate network.';
+            document.getElementById('modalDesc').innerText = product.desc || 'Premium Jordan silhouette curated for sneaker collectors and athletes worldwide.';
             
             const buyLink = document.getElementById('modalBuyBtn');
             buyLink.href = encodeURI(product.link);
@@ -454,7 +658,7 @@
             if (product.img && product.img.trim() !== "") {
                 imgWrapper.innerHTML = `<img src="${product.img}" alt="${product.title}">`;
             } else {
-                imgWrapper.innerHTML = `<div class="img-placeholder" style="font-size:40px;">JORDAN</div>`;
+                imgWrapper.innerHTML = `<div class="img-placeholder" style="font-size:36px;">JORDAN</div>`;
             }
 
             modal.classList.add('open');
