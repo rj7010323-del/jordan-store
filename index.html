@@ -365,7 +365,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Your exact Firebase config from admin.html
         const firebaseConfig = {
             apiKey: "AIzaSyDggq2H6VpwteslozxGeYEy4ocyS8d_tAo",
             authDomain: "jordan-store-1.firebaseapp.com",
@@ -432,7 +431,7 @@
                     ${imageHtml}
                     <div class="info">
                         <h3>${product.title}</h3>
-                        <div class="price">$${Number(product.price).toFixed(2)}</div>
+                        <div class="price">₹${Number(product.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                         <div class="click-hint">Click to view details ↗</div>
                     </div>
                 `;
@@ -446,7 +445,7 @@
             
             document.getElementById('modalCategory').innerText = product.category || 'Jordan Collection';
             document.getElementById('modalTitle').innerText = product.title;
-            document.getElementById('modalPrice').innerText = `$₹{Number(product.price).toFixed(2)}`;
+            document.getElementById('modalPrice').innerText = `₹${Number(product.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
             document.getElementById('modalDesc').innerText = product.desc || 'Premium Jumpman gear curated exclusively by our affiliate network.';
             
             const buyLink = document.getElementById('modalBuyBtn');
