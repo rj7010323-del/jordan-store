@@ -3,66 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan Store | Secure Admin Terminal</title>
+    <title>Jordan Store | Cyber Control Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0b0b;
-            --surface-color: #161616;
-            --accent-color: #ff003c;
-            --accent-hover: #cc0030;
-            --text-main: #ffffff;
-            --text-muted: #aaaaaa;
-            --border-color: #262626;
-            --danger-color: #df2020;
+            --bg-base: #07070a;
+            --surface-card: #111118;
+            --surface-field: #171722;
+            --neon-red: #ff0048;
+            --neon-glow: rgba(255, 0, 72, 0.35);
+            --cyan-accent: #00f2fe;
+            --text-main: #f8fafc;
+            --text-muted: #8e9bb0;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --danger: #ef4444;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        
-        .panel-container { width: 100%; max-width: 520px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h2 { font-size: 22px; font-weight: 900; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
-        h2 span { color: var(--accent-color); }
-        
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 20px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 72, 0.09) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.06) 0%, transparent 45%);
+        }
+
+        .panel-container {
+            width: 100%;
+            max-width: 540px;
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 38px 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        h2 span {
+            color: var(--neon-red);
+            text-shadow: 0 0 14px var(--neon-glow);
+        }
+
+        .quick-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .quick-icon-btn {
+            background: var(--surface-field);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .quick-icon-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .quick-icon-btn:hover {
+            color: #fff;
+            border-color: var(--neon-red);
+            box-shadow: 0 0 10px var(--neon-glow);
+        }
+
         .auth-view, .dashboard-view { display: none; }
         .active { display: block; }
-        
+
         .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: var(--text-muted); }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--bg-color); border: 1px solid var(--border-color); padding: 12px; border-radius: 6px; color: #fff; font-size: 14px; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--accent-color); }
-        
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            background: var(--surface-field);
+            border: 1px solid var(--border-subtle);
+            padding: 13px 15px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--neon-red);
+        }
+
         .file-upload-wrapper {
-            border: 2px dashed var(--border-color);
-            background: var(--bg-color);
-            padding: 16px;
-            border-radius: 6px;
+            border: 2px dashed var(--border-subtle);
+            background: var(--surface-field);
+            padding: 18px;
+            border-radius: 8px;
             text-align: center;
             position: relative;
             cursor: pointer;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
         }
-        .file-upload-wrapper:hover { border-color: var(--accent-color); }
-        .file-upload-wrapper input[type="file"] {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;
-        }
-        .file-status-text { font-size: 12px; color: var(--text-muted); }
-        .preview-img { width: 100%; max-height: 140px; object-fit: cover; border-radius: 4px; margin-top: 10px; display: none; border: 1px solid var(--border-color); }
 
-        .action-btn { width: 100%; background: var(--accent-color); color: #fff; border: none; padding: 14px; font-weight: 700; text-transform: uppercase; border-radius: 6px; cursor: pointer; transition: background 0.2s; display: block; text-align: center; }
-        .action-btn:hover { background: var(--accent-hover); }
-        .action-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-        
-        .logout-btn { background: transparent; color: var(--danger-color); border: 1px solid var(--danger-color); margin-top: 20px; }
-        .logout-btn:hover { background: rgba(223, 32, 32, 0.1); }
-        
-        .item-list { margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px; }
-        .item-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-color); padding: 12px 15px; border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 10px; gap: 10px; }
-        .item-info { display: flex; align-items: center; gap: 12px; overflow: hidden; }
-        .item-thumb { width: 36px; height: 36px; border-radius: 4px; object-fit: cover; background: #222; flex-shrink: 0; }
-        .item-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .del-btn { background: var(--danger-color); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: 700; flex-shrink: 0; }
-        .del-btn:hover { background: #b81414; }
-        
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #222; border: 1px solid var(--border-color); padding: 12px 25px; border-radius: 30px; font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1000; }
+        .file-upload-wrapper:hover {
+            border-color: var(--neon-red);
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0; cursor: pointer;
+        }
+
+        .file-status-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .preview-img {
+            width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .action-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--neon-red), #cf003a);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px var(--neon-glow);
+            transition: all 0.2s;
+            display: block;
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(255, 0, 72, 0.5);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            margin-top: 20px;
+            box-shadow: none;
+        }
+
+        .logout-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
+        }
+
+        .item-list {
+            margin-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 20px;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface-field);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 10px;
+            gap: 12px;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow: hidden;
+        }
+
+        .item-thumb {
+            width: 38px;
+            height: 38px;
+            border-radius: 6px;
+            object-fit: cover;
+            background: #20202d;
+            flex-shrink: 0;
+        }
+
+        .item-title {
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .del-btn {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: 800;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .del-btn:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #181824;
+            border: 1px solid var(--neon-red);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
         .toast.visible { opacity: 1; }
     </style>
 </head>
@@ -71,27 +297,45 @@
     <div class="panel-container">
         <!-- Auth Gate -->
         <div class="auth-view active" id="authView">
-            <h2>Terminal <span>Gate</span></h2>
+            <div class="header-bar">
+                <h2>Terminal <span>Access</span></h2>
+                <div class="quick-nav">
+                    <a href="index.html" class="quick-icon-btn" title="Live Store">
+                        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    </a>
+                </div>
+            </div>
             <form id="loginForm" onsubmit="handleAdminLogin(event)">
                 <div class="form-group">
                     <label>Admin Email</label>
                     <input type="email" id="adminEmail" placeholder="admin@jordanstore.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Admin Password</label>
+                    <label>Password</label>
                     <input type="password" id="adminPass" placeholder="Enter password" required>
                 </div>
-                <button type="submit" id="loginBtn" class="action-btn">Unlock Terminal</button>
+                <button type="submit" id="loginBtn" class="action-btn">Unlock Console</button>
             </form>
         </div>
 
         <!-- Dashboard -->
         <div class="dashboard-view" id="dashboardView">
-            <h2>Cloud <span>Station</span></h2>
+            <div class="header-bar">
+                <h2>Inventory <span>Control</span></h2>
+                <div class="quick-nav">
+                    <a href="index.html" class="quick-icon-btn" title="View Store">
+                        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    </a>
+                    <a href="mailto:support@jordanstore.com" class="quick-icon-btn" title="Email Inquiries">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                </div>
+            </div>
+            
             <form id="productForm" onsubmit="publishAffiliateProduct(event)">
                 <div class="form-group">
-                    <label>Product Title</label>
-                    <input type="text" id="prodTitle" placeholder="e.g. Air Jordan 1 Retro High" required>
+                    <label>Product Name</label>
+                    <input type="text" id="prodTitle" placeholder="e.g. Air Jordan 4 Retro 'Bred'" required>
                 </div>
                 <div class="form-group">
                     <label>Category</label>
@@ -99,12 +343,12 @@
                         <option value="Retro">Retro Collection</option>
                         <option value="Lifestyle">Lifestyle / Casual</option>
                         <option value="Performance">Performance Basketball</option>
-                        <option value="Limited">Limited / Collabs</option>
+                        <option value="Limited">Limited Edition</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Price ($ USD Numeric Only)</label>
-                    <input type="number" id="prodPrice" placeholder="e.g. 180" step="0.01" required>
+                    <label>Price (₹ INR Numeric Only)</label>
+                    <input type="number" id="prodPrice" placeholder="e.g. 18995" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <label>Upload Photo (Device File)</label>
@@ -115,22 +359,22 @@
                     <img id="imagePreview" class="preview-img" alt="Upload Preview">
                 </div>
                 <div class="form-group">
-                    <label>Or External Image Link</label>
+                    <label>Or Image Web URL</label>
                     <input type="url" id="prodImg" placeholder="https://...">
                 </div>
                 <div class="form-group">
-                    <label>Affiliate / Hop Link</label>
+                    <label>Affiliate / Purchase Hop Link</label>
                     <input type="url" id="prodLink" placeholder="https://..." required>
                 </div>
                 <div class="form-group">
                     <label>Marketing Description</label>
-                    <textarea id="prodDesc" rows="3" placeholder="Write sneaker specifications or story..."></textarea>
+                    <textarea id="prodDesc" rows="3" placeholder="Add sneaker history, colorway codes, and fit details..."></textarea>
                 </div>
-                <button type="submit" id="submitBtn" class="action-btn">Publish to Cloud</button>
+                <button type="submit" id="submitBtn" class="action-btn">Publish to Store</button>
             </form>
             
             <div class="item-list">
-                <label style="display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; color:var(--text-muted)">Live Cloud Products</label>
+                <label style="display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; color:var(--text-muted); font-weight:800;">Active Cloud Inventory</label>
                 <div id="activeContainer"></div>
             </div>
 
@@ -192,7 +436,7 @@
                 popAlertToast("Access Denied: " + err.message);
             } finally {
                 btn.disabled = false;
-                btn.innerText = "Unlock Terminal";
+                btn.innerText = "Unlock Console";
             }
         };
 
@@ -246,7 +490,7 @@
                 popAlertToast("Error uploading: " + err.message);
             } finally {
                 btn.disabled = false;
-                btn.innerText = "Publish to Cloud";
+                btn.innerText = "Publish to Store";
             }
         };
 
@@ -276,7 +520,7 @@
                     row.innerHTML = `
                         <div class="item-info">
                             ${item.img ? `<img src="${item.img}" class="item-thumb" alt="Thumb">` : ''}
-                            <span class="item-title">${item.title} ($${Number(item.price).toFixed(2)})</span>
+                            <span class="item-title">${item.title} (₹${Number(item.price).toLocaleString('en-IN')})</span>
                         </div>
                         <button class="del-btn" onclick="removeCloudProduct('${docId}')">Delete</button>
                     `;
