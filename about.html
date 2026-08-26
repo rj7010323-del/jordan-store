@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Us — Jordan Store</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg-main: #080a0d;
+      --bg-sec: #10141c;
+      --bg-card: #121722;
+
+      --text-main: #f5f3ee;
+      --text-muted: #a5a8b0;
+
+      --gold: #d6ad5c;
+      --gold-hi: #f0c96a;
+      --gold-border: rgba(214, 173, 92, 0.25);
+
+      --font-display: "Cinzel", serif;
+      --font-body: "Inter", sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(214, 173, 92, 0.08),
+          transparent 35%
+        ),
+        var(--bg-main);
+
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(8, 10, 13, 0.82);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      letter-spacing: .16em;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+
+      transition: .25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold-hi);
+    }
+
+    .nav-button {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+
+      padding: 10px 18px;
+
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+
+      transition: .3s ease;
+    }
+
+    .nav-button:hover {
+      background: var(--gold);
+      color: var(--bg-main);
+    }
+
+    /* ================= HERO ================= */
+
+    .about-hero {
+      min-height: 62vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      position: relative;
+      overflow: hidden;
+
+      padding: 100px 0 80px;
+    }
+
+    .hero-glow {
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      border-radius: 50%;
+
+      background: rgba(214, 173, 92, .08);
+
+      filter: blur(70px);
+
+      animation: glowPulse 5s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%,100% {
+        transform: scale(.9);
+        opacity: .5;
+      }
+
+      50% {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .25em;
+
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        2.3rem,
+        6vw,
+        5rem
+      );
+
+      line-height: 1.1;
+
+      letter-spacing: .04em;
+
+      margin-bottom: 25px;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-text {
+      color: var(--text-muted);
+
+      max-width: 650px;
+
+      margin: auto;
+
+      font-size: 1rem;
+
+      line-height: 1.9;
+    }
+
+    /* ================= STORY ================= */
+
+    .story {
+      padding: 100px 0;
+    }
+
+    .story-grid {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 80px;
+
+      align-items: center;
+    }
+
+    .section-label {
+      color: var(--gold);
+
+      font-size: .7rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: .2em;
+
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        1.8rem,
+        4vw,
+        3rem
+      );
+
+      line-height: 1.2;
+
+      margin-bottom: 25px;
+    }
+
+    .story-copy p {
+      color: var(--text-muted);
+
+      margin-bottom: 18px;
+
+      line-height: 1.9;
+    }
+
+    /* ================= 3D ARCHIVE ================= */
+
+    .archive-stage {
+      min-height: 420px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      perspective: 1000px;
+    }
+
+    .archive-cube {
+      width: 230px;
+      height: 230px;
+
+      position: relative;
+
+      transform-style: preserve-3d;
+
+      animation:
+        cubeRotate 16s linear infinite;
+
+      cursor: pointer;
+    }
+
+    @keyframes cubeRotate {
+      from {
+        transform:
+          rotateX(-12deg)
+          rotateY(0deg);
+      }
+
+      to {
+        transform:
+          rotateX(-12deg)
+          rotateY(360deg);
+      }
+    }
+
+    .cube-face {
+      position: absolute;
+
+      width: 230px;
+      height: 230px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(214,173,92,.12),
+          rgba(16,20,28,.9)
+        );
+
+      border:
+        1px solid
+        var(--gold-border);
+
+      box-shadow:
+        inset 0 0 50px rgba(214,173,92,.04),
+        0 0 35px rgba(214,173,92,.06);
+
+      backface-visibility: hidden;
+    }
+
+    .cube-face span {
+      font-family: var(--font-display);
+
+      font-size: 2rem;
+
+      letter-spacing: .15em;
+
+      color: var(--gold);
+    }
+
+    .front  { transform: translateZ(115px); }
+    .back   { transform: rotateY(180deg) translateZ(115px); }
+    .right  { transform: rotateY(90deg) translateZ(115px); }
+    .left   { transform: rotateY(-90deg) translateZ(115px); }
+    .top    { transform: rotateX(90deg) translateZ(115px); }
+    .bottom { transform: rotateX(-90deg) translateZ(115px); }
+
+    /* ================= VALUES ================= */
+
+    .values {
+      padding: 100px 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent,
+          rgba(255,255,255,.025),
+          transparent
+        );
+
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .values-header {
+      text-align: center;
+
+      max-width: 650px;
+
+      margin: 0 auto 50px;
+    }
+
+    .values-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 24px;
+    }
+
+    .value-card {
+      background: var(--bg-card);
+
+      border:
+        1px solid
+        rgba(255,255,255,.05);
+
+      padding: 35px 28px;
+
+      min-height: 230px;
+
+      transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .value-card:hover {
+      transform:
+        translateY(-8px)
+        rotateX(2deg);
+
+      border-color:
+        var(--gold-border);
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.4);
+    }
+
+    .value-number {
+      font-family: var(--font-display);
+
+      color: var(--gold);
+
+      font-size: .75rem;
+
+      letter-spacing: .15em;
+
+      margin-bottom: 30px;
+    }
+
+    .value-card h3 {
+      font-family: var(--font-display);
+
+      font-size: 1rem;
+
+      letter-spacing: .08em;
+
+      margin-bottom: 12px;
+    }
+
+    .value-card p {
+      color: var(--text-muted);
+
+      font-size: .86rem;
+
+      line-height: 1.8;
+    }
+
+    /* ================= MISSION ================= */
+
+    .mission {
+      padding: 110px 0;
+
+      text-align: center;
+    }
+
+    .mission-box {
+      max-width: 850px;
+
+      margin: auto;
+
+      padding: 60px 30px;
+
+      border:
+        1px solid
+        var(--gold-border);
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(214,173,92,.07),
+          transparent 60%
+        );
+    }
+
+    .mission-box h2 {
+      font-family: var(--font-display);
+
+      font-size: clamp(
+        1.7rem,
+        4vw,
+        2.8rem
+      );
+
+      line-height: 1.3;
+
+      margin-bottom: 20px;
+    }
+
+    .mission-box p {
+      color: var(--text-muted);
+
+      max-width: 650px;
+
+      margin: auto;
+
+      line-height: 1.9;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      padding: 60px 0 30px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.05);
+    }
+
+    .footer-inner {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 30px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+
+      letter-spacing: .15em;
+    }
+
+    .footer-brand span {
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+
+      font-size: .75rem;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 800px) {
+
+      .container {
+        width: min(
+          100% - 28px,
+          680px
+        );
+      }
+
+      .nav-inner {
+        min-height: 64px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-button {
+        padding: 8px 12px;
+      }
+
+      .about-hero {
+        min-height: 70vh;
+
+        padding:
+          80px 0
+          60px;
+      }
+
+      .story {
+        padding: 70px 0;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+      }
+
+      .archive-stage {
+        min-height: 300px;
+      }
+
+      .archive-cube {
+        width: 170px;
+        height: 170px;
+      }
+
+      .cube-face {
+        width: 170px;
+        height: 170px;
+      }
+
+      .front  { transform: translateZ(85px); }
+      .back   { transform: rotateY(180deg) translateZ(85px); }
+      .right  { transform: rotateY(90deg) translateZ(85px); }
+      .left   { transform: rotateY(-90deg) translateZ(85px); }
+      .top    { transform: rotateX(90deg) translateZ(85px); }
+      .bottom { transform: rotateX(-90deg) translateZ(85px); }
+
+      .cube-face span {
+        font-size: 1.4rem;
+      }
+
+      .values {
+        padding: 70px 0;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mission {
+        padding: 70px 0;
+      }
+
+      .mission-box {
+        padding: 45px 20px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+
+        text-align: center;
+      }
+    }
+
+    /* Small phones */
+
+    @media (max-width: 420px) {
+
+      .brand {
+        font-size: .9rem;
+      }
+
+      .nav-button {
+        font-size: .62rem;
+      }
+
+      .hero-title {
+        font-size: 2.2rem;
+      }
+
+      .hero-text {
+        font-size: .9rem;
+      }
+
+      .archive-cube {
+        width: 145px;
+        height: 145px;
+      }
+
+      .cube-face {
+        width: 145px;
+        height: 145px;
+      }
+
+      .front  { transform: translateZ(72px); }
+      .back   { transform: rotateY(180deg) translateZ(72px); }
+      .right  { transform: rotateY(90deg) translateZ(72px); }
+      .left   { transform: rotateY(-90deg) translateZ(72px); }
+      .top    { transform: rotateX(90deg) translateZ(72px); }
+      .bottom { transform: rotateX(-90deg) translateZ(72px); }
+    }
+
+    /* Accessibility */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav-inner">
+
+      <a href="index.html" class="brand">
+        JORDAN <span>STORE</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#catalogSection">Archive</a>
+        <a href="about.html" class="active">About Us</a>
+      </nav>
+
+      <a
+        href="mailto:rj7010323@gmail.com?subject=Jordan%20Store%20Inquiry"
+        class="nav-button"
+      >
+        Contact
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="about-hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="container hero-content">
+
+        <div class="eyebrow">
+          THE JORDAN STORE STORY
+        </div>
+
+        <h1 class="hero-title">
+          DISCOVER.<br>
+          <span>COLLECT.</span>
+          REMEMBER.
+        </h1>
+
+        <p class="hero-text">
+          Jordan Store is a curated destination for people who appreciate
+          unique products, distinctive design, collectibles, lifestyle finds,
+          and pieces with a story worth remembering.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- STORY -->
+
+    <section class="story">
+
+      <div class="container story-grid">
+
+        <div class="story-copy">
+
+          <div class="section-label">
+            Our Story
+          </div>
+
+          <h2 class="section-title">
+            MORE THAN A STORE.
+            A COLLECTION OF DISCOVERIES.
+          </h2>
+
+          <p>
+            We created Jordan Store around a simple idea:
+            discovering a great product should feel exciting.
+          </p>
+
+          <p>
+            Instead of filling the store with endless products,
+            we focus on creating a carefully presented collection
+            of interesting finds, limited pieces, lifestyle products,
+            gadgets, gifts, and collectibles.
+          </p>
+
+          <p>
+            Every product has its own place in our archive,
+            giving visitors an easier and more enjoyable way
+            to explore something different.
+          </p>
+
+        </div>
+
+
+        <!-- 3D OBJECT -->
+
+        <div class="archive-stage">
+
+          <div class="archive-cube">
+
+            <div class="cube-face front">
+              <span>JS</span>
+            </div>
+
+            <div class="cube-face back">
+              <span>ARCHIVE</span>
+            </div>
+
+            <div class="cube-face right">
+              <span>JS</span>
+            </div>
+
+            <div class="cube-face left">
+              <span>STORE</span>
+            </div>
+
+            <div class="cube-face top">
+              <span>JS</span>
+            </div>
+
+            <div class="cube-face bottom">
+              <span>2026</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- VALUES -->
+
+    <section class="values">
+
+      <div class="container">
+
+        <div class="values-header">
+
+          <div class="section-label">
+            What We Stand For
+          </div>
+
+          <h2 class="section-title">
+            THE JORDAN STORE STANDARD
+          </h2>
+
+        </div>
+
+
+        <div class="values-grid">
+
+          <article class="value-card">
+
+            <div class="value-number">
+              01 — CURATION
+            </div>
+
+            <h3>
+              CURATED COLLECTION
+            </h3>
+
+            <p>
+              We focus on interesting products instead of
+              overwhelming visitors with endless choices.
+            </p>
+
+          </article>
+
+
+          <article class="value-card">
+
+            <div class="value-number">
+              02 — DISCOVERY
+            </div>
+
+            <h3>
+              UNIQUE FINDS
+            </h3>
+
+            <p>
+              Our collection is built around products that
+              stand out through design, usefulness, style,
+              or collectibility.
+            </p>
+
+          </article>
+
+
+          <article class="value-card">
+
+            <div class="value-number">
+              03 — EXPERIENCE
+            </div>
+
+            <h3>
+              SIMPLE EXPERIENCE
+            </h3>
+
+            <p>
+              A clean interface makes it easy to search,
+              browse, compare, and discover products across
+              phones, tablets, and computers.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MISSION -->
+
+    <section class="mission">
+
+      <div class="container">
+
+        <div class="mission-box">
+
+          <div class="section-label">
+            Our Mission
+          </div>
+
+          <h2>
+            MAKE EVERY DISCOVERY
+            FEEL SPECIAL.
+          </h2>
+
+          <p>
+            Jordan Store continues to evolve with new discoveries,
+            new collections, and new experiences. Our goal is to
+            create a place where finding something interesting
+            always feels worth the visit.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        JORDAN <span>STORE</span>
+      </div>
+
+      <div class="footer-copy">
+        © 2026 Jordan Store. All rights reserved.
+      </div>
+
+      <a href="index.html">
+        Back to Archive →
+      </a>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
